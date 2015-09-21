@@ -33,14 +33,18 @@ def randomlize(alist):
 
 def output(alist):
     fout = codecs.open("output.txt", "w", 'utf-8')
-
-    for line in alist:
-        if (len(line.strip())) < 1:
-#             fout.write("\r\n")
-            pass
+    newSection = True
+    for aline in alist:
+        line = aline.strip()
+        print len(line)
+        if (len(line)) < 1:
+            fout.write(u"。\r\n")
+            newSection = True
         else:
+            if newSection != True:
+                fout.write(u"，")
             fout.write(line)
-            fout.write(u"，")
+            newSection = False
     fout.close()
 
 
@@ -54,6 +58,6 @@ step1 = list_split(step1, u' ')
 done = randomlize(step1)
 output(done)
 
-for line in done:
-    print "--"
-    print line
+# for line in done:
+#     print "--"
+#     print line
